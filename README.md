@@ -8,16 +8,16 @@
 
 ![Image](https://github.com/user-attachments/assets/594d9c1c-d652-4c5c-9ace-b4d7c08668ba)
 
-### 🍇 RunPod Templates
+### 🏠 Local and 🍇 RunPod Templates
 
-| Pod | Serverless | Info
-| --- | --- | --- |
-[![open_in_runpod_small](https://github.com/user-attachments/assets/b1afe627-76ad-42fd-baaa-59be2259b224)](https://console.runpod.io/deploy?template=zbpfw59j23&ref=iqi9iy8y) | [![open_in_runpod_small](https://github.com/user-attachments/assets/99241dcd-7d87-4140-a779-d775bbbd674c)](https://console.runpod.io/deploy?template=kav9oydwre&ref=iqi9iy8y) | TostUI - Qwen Image Edit 2509 with LoRAs (8bit)
-[![open_in_runpod_small](https://github.com/user-attachments/assets/b1afe627-76ad-42fd-baaa-59be2259b224)](https://console.runpod.io/deploy?template=avc1aiksjc&ref=iqi9iy8y) | [![open_in_runpod_small](https://github.com/user-attachments/assets/99241dcd-7d87-4140-a779-d775bbbd674c)](https://console.runpod.io/deploy?template=xw7bgxhlhg&ref=iqi9iy8y) | TostUI - Z-Image-Turbo with Upscaler (8bit)
-[![open_in_runpod_small](https://github.com/user-attachments/assets/b1afe627-76ad-42fd-baaa-59be2259b224)](https://console.runpod.io/deploy?template=rg49nppdgd&ref=iqi9iy8y) | [![open_in_runpod_small](https://github.com/user-attachments/assets/99241dcd-7d87-4140-a779-d775bbbd674c)](https://console.runpod.io/deploy?template=bu7is6ath4&ref=iqi9iy8y) | TostUI - Wan 2.2 Image to Video (8bit)
+| Local | Pod | Serverless | Info
+| --- | --- | --- | --- |
+[![local](https://github.com/user-attachments/assets/2b9a6ec2-e6cd-4415-9553-6c7bfb5e7722)](https://github.com/camenduru/tostui#tostui---qwen-image-edit-2509-with-loras-8bit) | [![pod](https://github.com/user-attachments/assets/b1afe627-76ad-42fd-baaa-59be2259b224)](https://console.runpod.io/deploy?template=zbpfw59j23&ref=iqi9iy8y) | [![serverless](https://github.com/user-attachments/assets/99241dcd-7d87-4140-a779-d775bbbd674c)](https://console.runpod.io/deploy?template=kav9oydwre&ref=iqi9iy8y) | TostUI - Qwen Image Edit 2509 with LoRAs (8bit)
+[![local](https://github.com/user-attachments/assets/2b9a6ec2-e6cd-4415-9553-6c7bfb5e7722)](https://github.com/camenduru/tostui#tostui---z-image-turbo-with-upscaler-8bit) | [![pod](https://github.com/user-attachments/assets/b1afe627-76ad-42fd-baaa-59be2259b224)](https://console.runpod.io/deploy?template=avc1aiksjc&ref=iqi9iy8y) | [![serverless](https://github.com/user-attachments/assets/99241dcd-7d87-4140-a779-d775bbbd674c)](https://console.runpod.io/deploy?template=xw7bgxhlhg&ref=iqi9iy8y) | TostUI - Z-Image-Turbo with Upscaler (8bit)
+[![local](https://github.com/user-attachments/assets/2b9a6ec2-e6cd-4415-9553-6c7bfb5e7722)](https://github.com/camenduru/tostui#tostui---wan-22-image-to-video-8bit) | [![pod](https://github.com/user-attachments/assets/b1afe627-76ad-42fd-baaa-59be2259b224)](https://console.runpod.io/deploy?template=rg49nppdgd&ref=iqi9iy8y) | [![serverless](https://github.com/user-attachments/assets/99241dcd-7d87-4140-a779-d775bbbd674c)](https://console.runpod.io/deploy?template=bu7is6ath4&ref=iqi9iy8y) | TostUI - Wan 2.2 Image to Video (8bit)
 
 
-### 💻 Local Setup
+### 🏠 Local Setup
 
 #### TostUI - Z-Image-Turbo (4bit)
 
