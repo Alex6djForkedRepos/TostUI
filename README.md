@@ -8,7 +8,7 @@
 
 ![Image](https://github.com/user-attachments/assets/594d9c1c-d652-4c5c-9ace-b4d7c08668ba)
 
-### 🏠 Local and 🍇 RunPod Templates
+### 🏠 Local and 🍇 RunPod Templates (All pods and serverless tested with RTX 3090)
 
 | Local | Pod | Serverless | Info
 | --- | --- | --- | --- |
