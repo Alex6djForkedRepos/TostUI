@@ -300,7 +300,7 @@ export function CanvasEditor() {
   const [selectedServiceForExamples, setSelectedServiceForExamples] = useState<AIService | null>(null)
 
   // Allowed services based on use local api toggle
-  const allowedServices = useLocalApi ? TOST_UI_LOCAL_API_SERVICES : availableServices.map(s => s.id)
+  const allowedServices = useLocalApi ? TOST_UI_LOCAL_API_SERVICES : availableServices.filter(s => s.workerId && s.workerId.trim() !== '').map(s => s.id)
 
   // Filtered services for the selector
   const filteredAvailableServices = availableServices.filter((service) => {
@@ -583,7 +583,7 @@ export function CanvasEditor() {
 
   // Initialize AI services based on use local api toggle
   useEffect(() => {
-    const allowedServices = useLocalApi ? TOST_UI_LOCAL_API_SERVICES : availableServices.filter(s => s.home).map(s => s.id)
+    const allowedServices = useLocalApi ? TOST_UI_LOCAL_API_SERVICES : availableServices.filter(s => s.home && s.workerId && s.workerId.trim() !== '').map(s => s.id)
 
     const filteredServices = availableServices
       .filter(service => allowedServices.includes(service.id))
