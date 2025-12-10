@@ -6,7 +6,8 @@
 
 ### ☁︎ Cloud Service: [https://ui.tost.ai](https://ui.tost.ai) <br />
 
-![Image](https://github.com/user-attachments/assets/594d9c1c-d652-4c5c-9ace-b4d7c08668ba)
+![Image](https://github.com/user-attachments/assets/594d9c1c-d652-4c5c-9ace-b4d7c08668ba) <br />
+![Image](https://github.com/user-attachments/assets/33bace4e-a0df-463d-96f9-4393d3ee85ea)
 
 ### 🏠 Local and 🍇 RunPod Templates
 
