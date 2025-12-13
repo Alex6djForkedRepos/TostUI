@@ -42,7 +42,7 @@
     docker run --gpus all -p 3000:3000 --name tostui-z-image-turbo-seedvr2 camenduru/tostui-z-image-turbo-seedvr2
     ```
 
-    *Requires NVIDIA GPU (Min 6GB VRAM)*
+    *Requires NVIDIA GPU (Min 24GB VRAM)*
 
 4.  **Open app**\
     Go to: http://localhost:3000
@@ -66,7 +66,7 @@
     docker run --gpus all -p 3000:3000 --name tostui-seedvr2 camenduru/tostui-seedvr2
     ```
 
-    *Requires NVIDIA GPU (Min 6GB VRAM)*
+    *Requires NVIDIA GPU (Min 24GB VRAM)*
 
 4.  **Open app**\
     Go to: http://localhost:3000
@@ -90,7 +90,7 @@
     docker run --gpus all -p 3000:3000 --name tostui-z-image-turbo camenduru/tostui-z-image-turbo
     ```
 
-    *Requires NVIDIA GPU (Min 6GB VRAM)*
+    *Requires NVIDIA GPU (Min 24GB VRAM)*
 
 4.  **Open app**\
     Go to: http://localhost:3000
