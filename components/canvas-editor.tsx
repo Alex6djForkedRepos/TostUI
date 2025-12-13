@@ -3097,7 +3097,7 @@ export function CanvasEditor() {
 
             // Determine target dimensions based on custom size setting
             let targetWidth: number, targetHeight: number
-            if (service?.custom_size || service?.id === "tost-upscaler-v2") {
+            if (service?.custom_size || service?.upscale_size) {
               // When custom size is enabled, use the actual result image dimensions
               targetWidth = img.width
               targetHeight = img.height
