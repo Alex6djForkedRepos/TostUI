@@ -292,6 +292,64 @@ export function CanvasEditor() {
   const [currentGlbPosition, setCurrentGlbPosition] = useState<{ x: number; y: number }>({ x: 100, y: 100 })
   const [currentGlbSize, setCurrentGlbSize] = useState<{ width: number; height: number }>({ width: 600, height: 500 })
 
+  // Function to generate dummy box thumbnail as fallback
+  const generateDummyBoxThumbnail = useCallback(async (): Promise<HTMLImageElement> => {
+    return new Promise((resolve) => {
+      const canvas = document.createElement('canvas')
+      canvas.width = 512
+      canvas.height = 512
+      const ctx = canvas.getContext('2d')
+
+      if (!ctx) {
+        const img = document.createElement('img')
+        img.onload = () => resolve(img)
+        img.src =
+          'data:image/svg+xml;base64,' +
+          btoa(`
+          <svg width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100%" height="100%" fill="#e3f2fd"/>
+            <text x="50%" y="50%" font-size="64" text-anchor="middle" fill="#2196f3" dy=".35em">
+              3D File
+            </text>
+          </svg>
+        `)
+        return
+      }
+
+      // Background
+      ctx.fillStyle = '#e3f2fd'
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+      const text = '3D File'
+      const x = 256
+      const y = 280
+      const depth = 20
+
+      ctx.font = 'bold 96px Arial'
+      ctx.textAlign = 'center'
+      ctx.textBaseline = 'middle'
+
+      // Draw depth (shadow layers)
+      for (let i = depth; i > 0; i--) {
+        ctx.fillStyle = `rgb(25, 118, 210)`
+        ctx.fillText(text, x + i, y + i)
+      }
+
+      // Front face
+      ctx.fillStyle = '#2196f3'
+      ctx.fillText(text, x, y)
+
+      // Highlight
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.35)'
+      ctx.fillText(text, x - 3, y - 3)
+
+      const img = document.createElement('img')
+      img.onload = () => resolve(img)
+      img.src = canvas.toDataURL('image/png')
+    })
+  }, [])
+
+
   // Function to generate GLB thumbnail
   const generateGLBThumbnail = useCallback(async (glbUrl: string): Promise<HTMLImageElement> => {
     return new Promise((resolve, reject) => {
@@ -398,6 +456,29 @@ export function CanvasEditor() {
           setLayers(prev => [...prev, thumbnailLayer])
         } catch (error) {
           console.error('Failed to generate GLB thumbnail:', error)
+          // Use dummy box thumbnail as fallback
+          try {
+            const dummyThumbnail = await generateDummyBoxThumbnail()
+            const croppedDummyThumbnail = await cropTransparent(dummyThumbnail)
+            // Create a new image layer for the dummy thumbnail
+            const thumbnailLayer: Layer = {
+              id: `layer-glb-thumb-${Date.now()}-${Math.random()}`,
+              type: 'image',
+              image: croppedDummyThumbnail,
+              x: layer.x + layer.width + 20, // Position next to the GLB layer
+              y: layer.y,
+              width: croppedDummyThumbnail.width,
+              height: croppedDummyThumbnail.height,
+              rotation: 0,
+              name: `${layer.name} Thumbnail`,
+              visible: true,
+              isGlbThumbnail: true,
+              glbUrl: layer.glbUrl,
+            }
+            setLayers(prev => [...prev, thumbnailLayer])
+          } catch (dummyError) {
+            console.error('Failed to generate dummy thumbnail:', dummyError)
+          }
           // Remove from processed if failed, so it can retry
           processedGlbUrls.current.delete(layer.glbUrl!)
         }
@@ -1204,11 +1285,71 @@ export function CanvasEditor() {
              rotation: 0,
              name: `${file.name} Thumbnail`,
              visible: true,
+             isGlbThumbnail: true,
+             glbUrl: glbUrl,
            }
 
            newLayers.push(newLayer)
          } catch (error) {
            console.error('Failed to generate GLB thumbnail:', error)
+           // Use dummy box thumbnail as fallback
+           try {
+             const dummyThumbnail = await generateDummyBoxThumbnail()
+             const croppedDummyThumbnail = await cropTransparent(dummyThumbnail)
+
+             // Calculate dimensions maintaining aspect ratio, with max dimension if enabled
+             const aspectRatio = croppedDummyThumbnail.width / croppedDummyThumbnail.height
+
+             let width: number, height: number
+             if (maxDimensionEnabled) {
+               if (croppedDummyThumbnail.width > croppedDummyThumbnail.height) {
+                 // Landscape thumbnail
+                 width = Math.min(croppedDummyThumbnail.width, maxDimension)
+                 height = width / aspectRatio
+               } else {
+                 // Portrait or square thumbnail
+                 height = Math.min(croppedDummyThumbnail.height, maxDimension)
+                 width = height * aspectRatio
+               }
+             } else {
+               // Use original dimensions
+               width = croppedDummyThumbnail.width
+               height = croppedDummyThumbnail.height
+             }
+
+             // Ensure they are divisible by 4
+             width = Math.ceil(width / 4) * 4
+             height = Math.ceil(height / 4) * 4
+
+             // Arrange thumbnails in a grid pattern around the center
+             const cols = Math.ceil(Math.sqrt(glbFiles.length))
+             const rows = Math.ceil(glbFiles.length / cols)
+             const colIndex = i % cols
+             const rowIndex = Math.floor(i / cols)
+
+             const spacing = 320 // Space between thumbnails
+             const offsetX = (colIndex - (cols - 1) / 2) * spacing
+             const offsetY = (rowIndex - (rows - 1) / 2) * spacing
+
+             const newLayer: Layer = {
+               id: `layer-glb-thumb-${Date.now()}-${i}`,
+               type: 'image',
+               image: croppedDummyThumbnail,
+               x: centerX - width / 2 + offsetX,
+               y: centerY - height / 2 + offsetY,
+               width,
+               height,
+               rotation: 0,
+               name: `${file.name} Thumbnail`,
+               visible: true,
+               isGlbThumbnail: true,
+               glbUrl: glbUrl,
+             }
+
+             newLayers.push(newLayer)
+           } catch (dummyError) {
+             console.error('Failed to generate dummy thumbnail:', dummyError)
+           }
          }
        }
 
@@ -1492,6 +1633,64 @@ export function CanvasEditor() {
           newLayers.push(newLayer)
         } catch (error) {
           console.error('Failed to generate GLB thumbnail:', error)
+          // Use dummy box thumbnail as fallback
+          try {
+            const dummyThumbnail = await generateDummyBoxThumbnail()
+            const croppedDummyThumbnail = await cropTransparent(dummyThumbnail)
+
+            // Calculate dimensions maintaining aspect ratio, with max dimension if enabled
+            const aspectRatio = croppedDummyThumbnail.width / croppedDummyThumbnail.height
+
+            let width: number, height: number
+            if (maxDimensionEnabled) {
+              if (croppedDummyThumbnail.width > croppedDummyThumbnail.height) {
+                // Landscape thumbnail
+                width = Math.min(croppedDummyThumbnail.width, maxDimension)
+                height = width / aspectRatio
+              } else {
+                // Portrait or square thumbnail
+                height = Math.min(croppedDummyThumbnail.height, maxDimension)
+                width = height * aspectRatio
+              }
+            } else {
+              // Use original dimensions
+              width = croppedDummyThumbnail.width
+              height = croppedDummyThumbnail.height
+            }
+
+            // Ensure they are divisible by 4
+            width = Math.ceil(width / 4) * 4
+            height = Math.ceil(height / 4) * 4
+
+            // Arrange thumbnails in a grid pattern around the center
+            const cols = Math.ceil(Math.sqrt(glbFiles.length))
+            const rows = Math.ceil(glbFiles.length / cols)
+            const colIndex = i % cols
+            const rowIndex = Math.floor(i / cols)
+
+            const spacing = 320 // Space between thumbnails
+            const offsetX = (colIndex - (cols - 1) / 2) * spacing
+            const offsetY = (rowIndex - (rows - 1) / 2) * spacing
+
+            const newLayer: Layer = {
+              id: `layer-glb-thumb-${Date.now()}-${i}`,
+              type: 'image',
+              image: croppedDummyThumbnail,
+              x: centerX - width / 2 + offsetX,
+              y: centerY - height / 2 + offsetY,
+              width,
+              height,
+              rotation: 0,
+              name: `${file.name} Thumbnail`,
+              visible: true,
+              isGlbThumbnail: true,
+              glbUrl: glbUrl,
+            }
+
+            newLayers.push(newLayer)
+          } catch (dummyError) {
+            console.error('Failed to generate dummy thumbnail:', dummyError)
+          }
         }
       }
 
