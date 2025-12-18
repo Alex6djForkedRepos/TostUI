@@ -5665,6 +5665,18 @@ export function CanvasEditor() {
                                   />
                                 </div>
                               )}
+                              {service.category === "3d" && service.examples?.input && service.examples.input.length > 0 && (
+                                <div className="mt-2">
+                                  <img
+                                    src={service.examples.input[0]}
+                                    alt={`${service.name} example input`}
+                                    className="w-full aspect-video object-cover rounded border"
+                                    onError={(e) => {
+                                      e.currentTarget.style.display = "none"
+                                    }}
+                                  />
+                                </div>
+                              )}
                             </div>
                           </div>
                           {!aiServices.some(s => s.id === service.id) && (
@@ -5835,7 +5847,7 @@ export function CanvasEditor() {
                                         camera-controls
                                         auto-rotate
                                         debug
-                                        style={{ width: "100%", height: "400px" }}
+                                        style={{ width: "100%", height: "600px" }}
                                       >
                                         <div slot="progress-bar"></div>
                                       </ModelViewer>
@@ -5914,7 +5926,7 @@ export function CanvasEditor() {
                                         alt={`Output ${index + 1}`}
                                         camera-controls
                                         auto-rotate
-                                        style={{ width: "100%", height: "400px" }}
+                                        style={{ width: "100%", height: "600px" }}
                                       />
                                     ) : ext === 'txt' ? (
                                       <div className="bg-background rounded p-3 max-h-40 overflow-y-auto">
