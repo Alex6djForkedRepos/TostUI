@@ -9,10 +9,11 @@
 ![Image](https://github.com/user-attachments/assets/594d9c1c-d652-4c5c-9ace-b4d7c08668ba) <br />
 ![Image](https://github.com/user-attachments/assets/33bace4e-a0df-463d-96f9-4393d3ee85ea)
 
-### 🏠 Local and 🍇 RunPod Templates
+### 🍞 Local and 🍇 RunPod Templates
 
 | Local | Pod | Serverless | Info 
 | --- | --- | --- | --- |
+[![local](https://github.com/user-attachments/assets/2b9a6ec2-e6cd-4415-9553-6c7bfb5e7722)](https://github.com/camenduru/tostui?tab=readme-ov-file#-tostui---wan-22-image-to-video-8bit) | | | TostUI - Wan 2.2 First Last Frame (8bit)
 [![local](https://github.com/user-attachments/assets/2b9a6ec2-e6cd-4415-9553-6c7bfb5e7722)](https://github.com/camenduru/tostui?tab=readme-ov-file#-tostui---trellis-2) | | | TostUI - Trellis 2
 [![local](https://github.com/user-attachments/assets/2b9a6ec2-e6cd-4415-9553-6c7bfb5e7722)](https://github.com/camenduru/tostui?tab=readme-ov-file#-tostui---tost-synth-v10-z-image-turbo-seedvr2) | | | TostUI - Tost Synth v1.0 (4K)
 [![local](https://github.com/user-attachments/assets/2b9a6ec2-e6cd-4415-9553-6c7bfb5e7722)](https://github.com/camenduru/tostui?tab=readme-ov-file#-tostui---seedvr2) | | | TostUI - SeedVR2
@@ -24,7 +25,30 @@
 
 `All services were tested with an RTX 3090, RTX 4090, and RTX 5090.`
 
-#### 🏠 TostUI - Trellis 2
+#### 🍞 TostUI - Wan 2.2 Image to Video (8bit)
+
+1.  **Install Docker**\
+    [Download Docker Desktop (Windows AMD64)](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe)
+    and run it.
+
+2.  **Update the container (optional)**
+
+    ``` bash
+    docker stop tostui-wan2-2-flf-8bit; docker rm tostui-wan2-2-flf-8bit; docker pull camenduru/tostui-wan2-2-flf-8bit
+    ```
+
+3.  **Run the container**
+
+    ``` bash
+    docker run --gpus all -p 3000:3000 --name tostui-wan2-2-flf-8bit camenduru/tostui-wan2-2-flf-8bit
+    ```
+
+    *Requires NVIDIA GPU (Min 24GB VRAM)*
+
+4.  **Open app**\
+    Go to: http://localhost:3000
+
+#### 🍞 TostUI - Trellis 2
 
 ![Image](https://github.com/user-attachments/assets/33bc9dca-dd23-4c67-a40d-41cf8e19fc71)
 
@@ -52,7 +76,7 @@ Video: https://x.com/camenduru/status/2001478162996191317
 4.  **Open app**\
     Go to: http://localhost:3000
 
-#### 🏠 TostUI - Tost Synth v1.0 (4K) (Z-Image-Turbo SeedVR2)
+#### 🍞 TostUI - Tost Synth v1.0 (4K) (Z-Image-Turbo SeedVR2)
 
 1.  **Install Docker**\
     [Download Docker Desktop (Windows AMD64)](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe)
@@ -76,7 +100,7 @@ Video: https://x.com/camenduru/status/2001478162996191317
 4.  **Open app**\
     Go to: http://localhost:3000
 
-#### 🏠 TostUI - SeedVR2
+#### 🍞 TostUI - SeedVR2
 
 1.  **Install Docker**\
     [Download Docker Desktop (Windows AMD64)](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe)
@@ -100,7 +124,7 @@ Video: https://x.com/camenduru/status/2001478162996191317
 4.  **Open app**\
     Go to: http://localhost:3000
 
-#### 🏠 TostUI - Z-Image-Turbo With LoRA
+#### 🍞 TostUI - Z-Image-Turbo With LoRA
 
 1.  **Install Docker**\
     [Download Docker Desktop (Windows AMD64)](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe)
@@ -124,7 +148,7 @@ Video: https://x.com/camenduru/status/2001478162996191317
 4.  **Open app**\
     Go to: http://localhost:3000
 
-#### 🏠 TostUI - Z-Image-Turbo (4bit)
+#### 🍞 TostUI - Z-Image-Turbo (4bit)
 
 1.  **Install Docker**\
     [Download Docker Desktop (Windows AMD64)](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe)
@@ -148,7 +172,7 @@ Video: https://x.com/camenduru/status/2001478162996191317
 4.  **Open app**\
     Go to: http://localhost:3000
 
-#### 🏠 TostUI - Qwen Image Edit 2509 with LoRAs (8bit)
+#### 🍞 TostUI - Qwen Image Edit 2509 with LoRAs (8bit)
 `Convert to Anime` `Convert to Reality T1` `Convert to Reality T2`
 `Convert to Chibi`\
 `Convert to Ahegao` `Convert to Color` `Convert to Kiss`
@@ -179,7 +203,7 @@ Video: https://x.com/camenduru/status/2001478162996191317
 4.  **Open app**\
     Go to: http://localhost:3000
 
-#### 🏠 TostUI - Z-Image-Turbo with Upscaler (8bit)
+#### 🍞 TostUI - Z-Image-Turbo with Upscaler (8bit)
 
 1.  **Install Docker**\
     [Download Docker Desktop (Windows AMD64)](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe)
@@ -202,7 +226,7 @@ Video: https://x.com/camenduru/status/2001478162996191317
 4.  **Open app**\
     Go to: http://localhost:3000
 
-#### 🏠 TostUI - Wan 2.2 Image to Video (8bit)
+#### 🍞 TostUI - Wan 2.2 Image to Video (8bit)
 
 1.  **Install Docker**\
     [Download Docker Desktop (Windows AMD64)](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe)
