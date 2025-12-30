@@ -30,6 +30,8 @@
 
 #### 🍞 TostUI - Flux.2 [dev] (8bit)
 
+![Screenshot 2025-12-30 184354](https://github.com/user-attachments/assets/b0b93cb1-0898-49af-a493-02734d1ba166)
+
 1.  **Install Docker**\
     [Download Docker Desktop (Windows AMD64)](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe)
     and run it.
